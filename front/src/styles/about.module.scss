@@ -1,0 +1,77 @@
+@import './_global';
+.container{
+    margin-top: 2%;
+    position: relative;
+    min-height: 60%;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.container::before{
+    content: "";
+    background-image: url('https://i.natgeofe.com/n/a3832877-1dcb-4ed9-9479-7380c6aa8d2b/Currency%20Portraits_Immersive%20Final.jpg');
+    opacity: 0.5;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+}
+
+.textContainer{
+   position: relative;
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    text-shadow: 6px 6px 10px rgb(255, 255, 255);
+    font-family: $menuFont;
+    padding: 2%;
+    font-weight: 100;
+    
+}
+
+.textContainer h6{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+.textContainer h3{
+    font-family: $compNameFont;
+    font-weight:100;
+}
+
+
+@media only screen and (max-width: 650px){
+    .textContainer{
+        padding: 5%;
+        background: $backgroundAbout;
+    }
+    .container::before{
+
+        content: "";
+
+        box-shadow: 0 0 10px 10px rgba(255, 253, 253, 0.733);
+        background: white;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover; 
+      ;
+    }
+}

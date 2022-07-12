@@ -1,0 +1,50 @@
+// $mainColorTopBar: #157270;
+$mainColorTopBar: linear-gradient(10deg, #157270,#fb8105 );
+$mainColorFooter: linear-gradient(10deg, #fb800586,#15727077 );
+$hoverColor: #7bb9b86e;
+$colorForSelect: #1976661d;
+$compNameColor: #fde379;
+$textColor: #fcfcf7;
+$convertionBorderColor: #15727088 ;
+$fill: #e0eaf576;
+$topBarFont: 'Barlow', sans-serif;
+$compNameFont: 'Staatliches', cursive;
+$menuFont: 'Titillium Web', sans-serif;
+$borderBottomMenuOnHover: #fb8005d9;
+$borderBottomMenu: #fec58b;
+$chart: #ffe88a51;
+$inputFieldColor: #07acaa;
+$backgroundAbout: linear-gradient(180deg,#fcfcf7, #acb76167);
+$inputFieldBorderColor: #fdd53c;
+$mainSubmitBtnBackground: linear-gradient(10deg,#fcfcf7, #acb76167);
+$mainSubmitBtnBackgroundHover: linear-gradient(10deg,#fcfcf7, #acb76187);
+$secondFont: 'Barlow', sans-serif;
+// #fdd53c yellow
+// #157270 esmerald
+// #fcfcf7 white
+// #fb8105 orange
+// #abb761 olive
+
+
+// @mixin border($color, $width) {
+//     border: $width dotted $color;
+//   }
+
+//   @mixin border($color, $width) {  // with default value
+//     border: $width dotted $color;
+//   }
+
+//   .header{  //including mixin
+//     @include header;
+//     @include header(2px, dotted, gray); //with params
+//   }
+
+@mixin convertionGoldSilverContainer {
+    min-height: 20%;
+    width: 100%;
+    display: grid;
+    grid-template-columns:[col-1] 1fr [col-2] 1fr;
+    justify-items: center;
+    grid-template-areas: 'col col';
+
+}

@@ -1,0 +1,153 @@
+@import 'global';
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Staatliches&family=Titillium+Web:wght@600&display=swap"); 
+
+
+.container{
+ @include convertionGoldSilverContainer;
+ border-bottom: 1px solid $convertionBorderColor;
+}
+
+.goldsilver{
+    grid-area: col;
+    grid-column: col-1;
+    min-width: 60%;
+
+}
+
+.convertion{
+    grid-area: col;
+    grid-column: col-2;
+    min-width: 60%;
+
+}
+
+
+
+.selectItem{
+ margin-bottom: 3%;
+ border: 2px solid $colorForSelect;
+ border-radius: 6px;
+
+}
+
+.select-selectItem {
+background-color: rgb(92, 92, 30) ;
+
+}
+
+.btn{
+    box-shadow: 1px 3px 8px rgba(103, 99, 99, 0.311); 
+    background: $mainSubmitBtnBackground; 
+
+    font-family: $secondFont;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+    border: 1px solid #5b8f4b57;
+    border-radius: 2px;
+    min-width: 30%;
+    box-shadow: 2px 2px 15px rgba(128, 128, 128, 0.393);
+
+}
+
+.btn:hover{
+    box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.393);
+    background: $mainSubmitBtnBackgroundHover; 
+
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.amountInput{
+
+   height: 60%;
+   font-family: $menuFont;
+}
+
+// .amountInput input:focus{
+//     border: 1px solid red;
+// }
+
+.amountInput input{
+    border: 2px solid $colorForSelect;
+    border-radius: 5px;
+    margin-left: 2%;
+    min-height: 40px;
+}
+.exchangeResult{
+    margin: 3%;
+    font-family: $menuFont;
+    font-weight: 100;
+    font-size: 1.5em;
+    border-bottom: 0.1px solid $convertionBorderColor;
+}
+.goldResult{
+ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 90%;
+}
+
+.goldResult p{
+    padding: 0.2%;
+    font-family: $menuFont;
+    font-weight: 100;
+    font-size: 1.3em;
+    border-bottom: 0.1px solid $convertionBorderColor;
+
+}
+.goldResult p:hover{
+    cursor: pointer;
+    font-family: $menuFont;
+    font-size: 1.4em;
+    border-bottom: 0.1px solid $convertionBorderColor;
+   
+
+}
+
+.spinner{
+    min-width: 5%;
+    min-height: 5%;
+    border: 2px solid red;
+}
+
+@media only screen and  (max-width: 600px) {
+    
+    .container{
+        display: flex;
+        justify-content: center;
+        margin: 3%;
+        min-height: 0%;
+    }
+
+  .goldsilver{
+    margin-top: 3%;
+    min-width: 80%
+  }
+  .convertion{
+    min-width: 80%
+  }
+
+  
+  .btn{
+    font-family: $secondFont;
+    box-shadow: 0px 3px 13px rgba(103, 99, 99, 0.311); 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $inputFieldColor;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: 2px 2px 15px rgba(128, 128, 128, 0.393);
+    min-width: 50%;
+    min-height: 40px;
+  }
+
+
+  }
