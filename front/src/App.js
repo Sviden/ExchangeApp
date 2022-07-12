@@ -3,6 +3,7 @@ import { TopBar } from "./components/TopBar/TopBar";
 import { BrowserRouter as Router} from "react-router-dom";
 import { Main } from "./components/MainSection/Main";
 
+
 function App() {
     return (
         <div className={styles.mainContainer}>
