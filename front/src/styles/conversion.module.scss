@@ -1,6 +1,6 @@
 @import './global';
-.convertionContainer{
-    @include convertionGoldSilverContainer;
+.conversionContainer{
+    @include conversionGoldSilverContainer;
 
 }
 
@@ -65,15 +65,15 @@
     to {background: linear-gradient(180deg, rgba(160, 222, 183, 0.454), #fb800527)}
   }
 
- .convertionContainer svg{
+ .conversionContainer svg{
     margin-left: 3%;
 
   }
 
-  @media only screen and  (max-width: 600px) {
+  @media only screen and  (max-width: 800px) {
     
 
-    .convertionContainer{
+    .conversionContainer{
         display: flex;
         flex-direction: column;
         margin-top: 0%;

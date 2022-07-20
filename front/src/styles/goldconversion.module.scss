@@ -3,8 +3,8 @@
 
 
 .container{
- @include convertionGoldSilverContainer;
- border-bottom: 1px solid $convertionBorderColor;
+ @include conversionGoldSilverContainer;
+ border-bottom: 1px solid $conversionBorderColor;
 }
 
 .goldsilver{
@@ -14,7 +14,7 @@
 
 }
 
-.convertion{
+.conversion{
     grid-area: col;
     grid-column: col-2;
     min-width: 60%;
@@ -83,7 +83,7 @@ background-color: rgb(92, 92, 30) ;
     font-family: $menuFont;
     font-weight: 100;
     font-size: 1.5em;
-    border-bottom: 0.1px solid $convertionBorderColor;
+    border-bottom: 0.1px solid $conversionBorderColor;
 }
 .goldResult{
  
@@ -98,14 +98,14 @@ background-color: rgb(92, 92, 30) ;
     font-family: $menuFont;
     font-weight: 100;
     font-size: 1.3em;
-    border-bottom: 0.1px solid $convertionBorderColor;
+    border-bottom: 0.1px solid $conversionBorderColor;
 
 }
 .goldResult p:hover{
     cursor: pointer;
     font-family: $menuFont;
     font-size: 1.4em;
-    border-bottom: 0.1px solid $convertionBorderColor;
+    border-bottom: 0.1px solid $conversionBorderColor;
    
 
 }
@@ -116,7 +116,7 @@ background-color: rgb(92, 92, 30) ;
     border: 2px solid red;
 }
 
-@media only screen and  (max-width: 600px) {
+@media only screen and  (max-width: 800px) {
     
     .container{
         display: flex;
@@ -129,7 +129,7 @@ background-color: rgb(92, 92, 30) ;
     margin-top: 3%;
     min-width: 80%
   }
-  .convertion{
+  .conversion{
     min-width: 80%
   }
 

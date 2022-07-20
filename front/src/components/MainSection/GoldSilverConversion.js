@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
-import styles from "../../styles/goldconvertion.module.scss";
+import styles from "../../styles/goldconversion.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { theme } from "./themeForSelect";

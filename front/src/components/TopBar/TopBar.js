@@ -41,7 +41,7 @@ export const TopBar =()=>{
              <div className={styles.navEl}><Silver/></div>  
             </GoldSilverTopBarProvider>
             <div className={styles.navSelect} style={{color: "black"}}>
-            <Select value={base} options={options} onChange={onSelect} placeholder={base} theme={theme}/>
+            <Select value={base} options={options} onChange={onSelect} placeholder={base?base:'EUR'} theme={theme}/>
            </div>
 
         </nav> 

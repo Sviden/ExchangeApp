@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
-import styles from "../../styles/goldconvertion.module.scss";
+import styles from "../../styles/goldconversion.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { theme } from "./themeForSelect";
 
-export const Convertion = (props) => {
+export const Conversion = (props) => {
     const [from, setFrom] = useState();
     const [to, setTo] = useState();
     const [amount, setAmount] = useState();
@@ -14,7 +14,7 @@ export const Convertion = (props) => {
     const [symbols, setSymbols] = useState();
 
     const convert = async (e) => {
-        const response = await axios.get("http://localhost:3001/convertion", { params: { from: from, to: to, amount: amount } });
+        const response = await axios.get("http://localhost:3001/conversion", { params: { from: from, to: to, amount: amount } });
         setExchREsult(response.data.result);
     };
 
@@ -60,7 +60,7 @@ export const Convertion = (props) => {
     };
 
     return (
-        <div className={styles.convertion}>
+        <div className={styles.conversion}>
             <form onSubmit={(e) => onSubmit(e)}>
                 <Select
                     theme={theme}

@@ -12,7 +12,7 @@ export const CurrencyContextTopBarProvider = ({ children, base }) => {
         if (!curr || data.data.usd !== curr.usd || data.data.eur !== curr.eur || data.data.btc !== curr.btc || data.data.date !== curr.date) {
             setCurr({ ...data.data });
         }
-
+          
         return data.data;
     };
 

@@ -103,7 +103,7 @@ app.get("/metal", async (req, res) => {
 
 //CURRENCY EXCHANGE
 
-app.get("/convertion", async (req, res) => {
+app.get("/conversion", async (req, res) => {
     const options = { headers: { apikey: "oT0HqVBM52bJBRZeJthi2hAydR8MYmeS" } };
     const from = req.query.from;
     const to = req.query.to;
