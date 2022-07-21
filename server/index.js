@@ -34,10 +34,8 @@ app.get("/currencies", async (req, res) => {
         base = "EUR";
     }
 
-    console.log(base);
     let randomRes = await currModel.aggregate().match({ base: base }).sample(1);
     let randomResString = JSON.stringify(randomRes);
-    console.log(`RANDOM RES: ${randomResString}`);
     let latestData = await currModel.find({ base: base }).sort({ date: -1 }).limit(1);
     let toReturn;
     if (!latestData || latestData.length == 0 || moment(latestData[0].date) < moment(Date.now()).add(-6, "hours")) {
@@ -129,13 +127,11 @@ app.get("/symbols", async (req, res) => {
         console.log(err);
         return err;
     }
-    console.log(data);
     res.send(data.data.symbols);
 });
 
 app.get("/currsymbols", async (req, res) => {
     const symbols = await symbolModel.find({});
-    console.log(symbols);
     res.send(symbols[0].symbols);
 });
 
@@ -148,13 +144,11 @@ app.get("/chartdata", async (req, res) => {
     const theCall = `https://metals-api.com/api/timeseries?access_key=${apiKey}&start_date=${startDate}&end_date=${endDate}&base=XAG&symbols=XAU`;
 
     let latestData = await chartModel.find({}).sort({ date: -1 }).limit(1);
-    console.log("MONGO RETURN: ", latestData);
 
     let toReturn;
 
     if (!latestData || latestData.length === 0 || moment(latestData[0].date) < moment(Date.now()).add(-1, "days")) {
         const data = await axios.get(theCall);
-        console.log(data.data);
         const chart = new chartModel({
             base: data.data.base,
             startDate: startDate,
@@ -195,7 +189,6 @@ app.get("/goldsilverprice", async (req, res) => {
     let latestData = await goldPriceModel.find({ metal: metal, currency: currency }).sort({ date: -1 }).limit(1);
 
     if ((metal && currency && !latestData) || latestData.length === 0 || moment(latestData[0].date) < moment(Date.now()).add(-1, "days")) {
-        console.log(metal, currency);
         const data = await axios.get(`https://www.goldapi.io/api/${metal}/${currency}`, requestOptions);
 
         const price = goldPriceModel({
@@ -207,22 +200,16 @@ app.get("/goldsilverprice", async (req, res) => {
             metal: data.data.metal,
             currency: data.data.currency,
         });
-        console.log(data.data);
 
         try {
             price.save();
-            console.log("saved");
         } catch (err) {
             return err;
         }
         toReturn = price;
-        console.log("To return1" + toReturn);
     } else {
         toReturn = latestData[0];
     }
-
-    console.log("To return2" + toReturn);
-    console.log("Latest Data" + latestData);
 
     res.send(toReturn);
 });
