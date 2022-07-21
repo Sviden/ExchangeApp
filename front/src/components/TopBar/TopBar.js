@@ -9,7 +9,6 @@ import { GoldSilverTopBarProvider } from './CurrContext';
 import { Silver } from './Silver';
 import { Menu } from '../Menu/Menu';
 import { Squash as Hamburger } from 'hamburger-react'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../MainSection/themeForSelect';
 

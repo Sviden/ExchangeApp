@@ -20,12 +20,12 @@ export const GoldRates = () => {
     const [metal, setMetal] = useState("");
     const [price, setPrice] = useState("");
     const [showSelect, setShowSelect] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
 
     const submitHandler = async (e) => {
         e.preventDefault();
         if (currency && metal) {
-            const data = await axios.get(`http://localhost:3001/goldsilverprice`, { params: { metal: metal.substring(0, 3), currency: currency } });
+            const pricePath = process.env.REACT_APP_GOLDSILVER_PRICE;
+            const data = await axios.get(pricePath, { params: { metal: metal.substring(0, 3), currency: currency } });
             setPrice(data.data);
             setShowSelect(!showSelect);
         } else {

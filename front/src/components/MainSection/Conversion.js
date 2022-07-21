@@ -14,12 +14,15 @@ export const Conversion = (props) => {
     const [symbols, setSymbols] = useState();
 
     const convert = async (e) => {
-        const response = await axios.get("http://localhost:3001/conversion", { params: { from: from, to: to, amount: amount } });
+        const convPath = process.env.REACT_APP_CURRENCY_CONVERSION;
+        console.log('JENYA:' + convPath);
+        const response = await axios.get(convPath, { params: { from: from, to: to, amount: amount }});
         setExchREsult(response.data.result);
     };
 
     const getSymbols = async () => {
-        const response = await axios.get("http://localhost:3001/currsymbols");
+        const symbolsPath = process.env.REACT_APP_CURRENCY_SYMBOLS;
+        const response = await axios.get(symbolsPath);
         setSymbols(response.data);
     };
 

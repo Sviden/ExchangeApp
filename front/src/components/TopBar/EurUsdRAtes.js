@@ -24,21 +24,6 @@ export const EurUsd = () => {
         }
     }, [curr]);
 
-    //???????????????????????????????????????
-    // const calcDifference = (currency, prevValue) => {
-    //   let res;
-
-    //   if(currency >= prevValue){
-    //     res = ((currency-prevValue)/currency)*100
-
-    //   }else if(prevValue >= currency){
-    //     res = ((prevValue-currency)/prevValue)*100
-    //   }
-
-    //    res ? setDifference(res) : setDifference(0)
-
-    // }
-
     const calcDifference = () => {
         let res;
         if (base === "EUR") {

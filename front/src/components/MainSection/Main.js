@@ -18,6 +18,7 @@ export const Main = () => {
     };
 
     useEffect(() => {
+        
         window.addEventListener("resize", detectSize);
 
         return () => {

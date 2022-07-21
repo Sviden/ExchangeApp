@@ -1,4 +1,5 @@
 const express = require("express");
+const config = require("./Config/config.json")
 const app = express();
 app.use(express.json());
 const axios = require("axios");
@@ -9,7 +10,7 @@ const cors = require("cors");
 app.use(cors());
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://sviden:wsa123456@cluster0.nkfxr.mongodb.net/currencies?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.mongoDbConnection, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 
@@ -26,7 +27,7 @@ const goldPriceModel = require("./models/goldSilverPrice");
 
 // TOP BAR CURRENCIES
 app.get("/currencies", async (req, res) => {
-    const options = { headers: { apikey: "9SF6dsnELgIvPMqWEUuCRXxE4tqr3L3G" } };
+    const options = { headers: { apikey: config.topBarCurrRateAPIkey } };
 
     let base = req.query.base;
 
@@ -66,23 +67,22 @@ app.get("/currencies", async (req, res) => {
 // GOLD/SILVER TOP BAR
 
 app.get("/metal", async (req, res) => {
-    const apiKey = "vraboe1p8fcm8vrn69a3g2fk63qr61dxh9045hm7ify1anxnkyu89lfgchxo";
+    const apiKey = config.topBarMetalRateAPIkey;
     let base = req.query.base;
     if (!base) {
         base = "EUR";
     }
-    let randomRes = await metalModel.aggregate().match({ base: base }).sample(1);
-    let randomResString = JSON.stringify(randomRes);
+
     let toReturn;
     let latestData = await metalModel.find({ base: base }).sort({ date: -1 }).limit(1);
-    if (!latestData || latestData.length === 0 || moment(latestData[0].date) < moment(Date.now()).add(-6, "hours")) {
+    if (!latestData || latestData.length === 0 || moment(latestData[0].date) < moment(new Date().toUTCString()).add(-6, "hours")) {
         const data = await axios.get(`https://metals-api.com/api/latest?access_key=${apiKey}&base=${base}&symbols=XAU,XAG`);
 
         const metal = new metalModel({
             base: data.data.base,
             gold: data.data.rates.XAU,
             silver: data.data.rates.XAG,
-            date: moment.unix(data.data.timestamp),
+            date: new Date(new Date(moment.unix(data.data.timestamp)).toUTCString()),
         });
 
         toReturn = metal;
@@ -93,6 +93,8 @@ app.get("/metal", async (req, res) => {
             return err;
         }
     } else {
+        let randomRes = await metalModel.aggregate().match({ base: base }).sample(1);
+
         if (randomRes) toReturn = randomRes[0];
     }
 
@@ -102,7 +104,7 @@ app.get("/metal", async (req, res) => {
 //CURRENCY EXCHANGE
 
 app.get("/conversion", async (req, res) => {
-    const options = { headers: { apikey: "oT0HqVBM52bJBRZeJthi2hAydR8MYmeS" } };
+    const options = { headers: { apikey: config.conversionAndSymbolsAPIkey } };
     const from = req.query.from;
     const to = req.query.to;
     const amount = req.query.amount;
@@ -115,7 +117,7 @@ app.get("/conversion", async (req, res) => {
 //GET SYMBOLS
 
 app.get("/symbols", async (req, res) => {
-    const options = { headers: { apikey: "oT0HqVBM52bJBRZeJthi2hAydR8MYmeS" } };
+    const options = { headers: { apikey:  config.conversionAndSymbolsAPIkey} };
 
     const data = await axios.get("https://api.apilayer.com/exchangerates_data/symbols", options);
     const symbols = new symbolModel({
@@ -140,7 +142,7 @@ app.get("/currsymbols", async (req, res) => {
 app.get("/chartdata", async (req, res) => {
     const endDate = moment().subtract(1, "days").format("YYYY-MM-DD");
     const startDate = moment().subtract(8, "days").format("YYYY-MM-DD");
-    const apiKey = "vraboe1p8fcm8vrn69a3g2fk63qr61dxh9045hm7ify1anxnkyu89lfgchxo";
+    const apiKey = config.chartDataAPIkey;
     const theCall = `https://metals-api.com/api/timeseries?access_key=${apiKey}&start_date=${startDate}&end_date=${endDate}&base=XAG&symbols=XAU`;
 
     let latestData = await chartModel.find({}).sort({ date: -1 }).limit(1);
@@ -180,7 +182,7 @@ app.get("/goldsilverprice", async (req, res) => {
     var requestOptions = {
         method: "GET",
         headers: {
-            "x-access-token": "goldapi-39oaz1al59tw0hb-io",
+            "x-access-token": config.goldSilverPriceAccess,
             "Content-Type": "application/json",
         },
         redirect: "follow",

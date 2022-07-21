@@ -9,7 +9,8 @@ export const Chart = () => {
     const [rates, setRates] = useState();
 
     const getData = async () => {
-        const result = await axios.get("http://localhost:3001/chartdata");
+        const chartPath = process.env.REACT_APP_CHART_DATA;
+        const result = await axios.get(chartPath);
         setDates(Object.keys(result.data.rates));
         setRates(result.data.rates);
     };

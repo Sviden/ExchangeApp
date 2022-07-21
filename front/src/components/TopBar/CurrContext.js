@@ -8,7 +8,8 @@ export const CurrencyContextTopBarProvider = ({ children, base }) => {
     const [curr, setCurr] = useState();
 
     const getDataCurrency = async () => {
-        const data = await axios.get("http://localhost:3001/currencies", { params: { base: base } });
+        const currPath = process.env.REACT_APP_CURRENCIES_TOPBAR;
+        const data = await axios.get(currPath, { params: { base: base } });
         if (!curr || data.data.usd !== curr.usd || data.data.eur !== curr.eur || data.data.btc !== curr.btc || data.data.date !== curr.date) {
             setCurr({ ...data.data });
         }
@@ -34,7 +35,8 @@ export const GoldSilverTopBarProvider = ({ children, base }) => {
     const [gold, setGold] = useState();
 
     const getMetalData = async () => {
-        const data = await axios.get("http://localhost:3001/metal", { params: { base: base } });
+        const metalPath = process.env.REACT_APP_METAL_TOPBAR;
+        const data = await axios.get(metalPath, { params: { base: base } });
         setGold(data.data.gold);
         setSilver(data.data.silver);
     };
